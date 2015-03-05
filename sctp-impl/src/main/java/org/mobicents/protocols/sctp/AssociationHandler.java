@@ -84,8 +84,11 @@ class AssociationHandler extends AbstractNotificationHandler<AssociationImpl> {
 
 			// TODO assign Thread's ?
 			try {
+				logger.debug( String.format( "Association( %s - %s )", associtaion, associtaion.getName() ) );
 				associtaion.markAssociationUp();
+				logger.debug( String.format( "Association( %s - %s ).getAssociationListener() = %s", associtaion, associtaion.getName(), associtaion.getAssociationListener() ) );
 				associtaion.getAssociationListener().onCommunicationUp(associtaion, this.maxInboundStreams, this.maxOutboundStreams);
+				logger.debug( String.format( "Association( %s - %s ) called onCommunicationUp", associtaion, associtaion.getName() ) );
 			} catch (Exception e) {
 				logger.error(String.format("Exception while calling onCommunicationUp on AssociationListener for Association=%s", associtaion.getName()), e);
 			}
